@@ -33,11 +33,13 @@ public class FibonacciRunnableDemo {
         });
         try {
             // прерываем через 3 секунды (при увеличении времени и кол-ва потоков, числа отличаются в Thread  и Runnable
+
             future.get(3, TimeUnit.SECONDS);
+            future.cancel(true);
         } catch (InterruptedException e) {
             future.cancel(true);
         } catch (ExecutionException e) {
-            e.printStackTrace();
+            e.getMessage();
         } catch (TimeoutException e) {
             System.out.println("Task has timed out");
             future.cancel(true);
